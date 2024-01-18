@@ -23,6 +23,11 @@ function App(): JSX.Element {
     setTitle('')
   }
 
+  const deleteItem = (id: number) => {
+    const newData = arr.filter(c => c.id != id);
+    setArr(newData)
+  }
+
   return (
     <div className={style.todo}>
       <h1 className={style.title}>App Todo</h1>
@@ -33,6 +38,9 @@ function App(): JSX.Element {
           arr.map(c =>
             <div key={c.id} className={style.cardItem}>
               <p>{c.title}</p>
+              <div className={style.delBtn}>
+                <button onClick={() => deleteItem(c.id)}>Del</button>
+              </div>
             </div>
           )
         }
