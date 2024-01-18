@@ -1,14 +1,9 @@
 import { ChangeEvent, useState } from 'react'
 import style from './home.module.css'
 import { IData } from './interfaces'
+import { data } from './constants'
 
 function App(): JSX.Element {
-  const data: IData[] = [
-    { title: 'omar', id: 1, description: 'description' },
-    { title: 'osman', id: 2, description: 'description' },
-    { title: 'Abdulloh', id: 1, description: 'description' },
-  ]
-
   const [title, setTitle] = useState<string>('')
   const [arr, setArr] = useState<IData[]>(data)
 
@@ -19,7 +14,12 @@ function App(): JSX.Element {
 
   const handleSubmit = () => {
     if (!title?.length) return;
-    console.log(title);
+    const newArr = {
+      title,
+      id: new Date().getTime(),
+      description: 'descriptoin'
+    }
+    setArr([...arr, newArr])    
     setTitle('')
   }
 
